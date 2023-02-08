@@ -576,9 +576,6 @@ static rule_map *rule_map_new(kvp keys[], size_t num_of_keys, int lineno) {
 					memset(tmp, 0, l);
 
 				new_map->key = tmp;
-
-				strncat(new_map->key, k->key, key_len);
-				strncat(new_map->key, k->value, val_len);
 			}
 			break;
 		}
