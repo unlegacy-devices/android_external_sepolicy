@@ -562,19 +562,20 @@ static rule_map *rule_map_new(kvp keys[], size_t num_of_keys, int lineno) {
 
 			if (r->dir == dir_in) {
     				char *tmp;
-    				size_t key_len = (new_map->key) ? strlen(new_map->key) : 0;
-    				size_t key_len = (new_map->key) ? strlen(new_map->key) : 0;
-    				key_len = (key_len + strlen(k->key) < SIZE_MAX) ? key_len + strlen(k->key) : SIZE_MAX;
-    				tmp = realloc(new_map->key, l);
-    				if (!tmp)
-    				    goto oom;
-	    			if (!new_map->key)
-      				    memset(tmp, 0, key_len + 1);
+				    size_t key_len = (new_map->key) ? strlen(new_map->key) : 0;
+				    int l = 0;
+				    int val_len = l - strlen(new_map->key) - key_len;
+				    key_len = (key_len + strlen(k->key) < SIZE_MAX) ? key_len + strlen(k->key) : SIZE_MAX;
+				    tmp = realloc(new_map->key, key_len + 1);
+				    if (!tmp)
+					goto oom;
+				    if (!new_map->key)
+					memset(tmp, 0, key_len + 1);
 
-    			new_map->key = tmp;
-		
+			new_map->key = tmp;
+				
 			strncat(new_map->key, k->key, key_len - strlen(new_map->key));
-    			strncat(new_map->key, k->value, val_len);
+			strncat(new_map->key, k->value, val_len);
 
 			}
 			break;
