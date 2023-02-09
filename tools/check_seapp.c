@@ -6,6 +6,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <limits.h>
 #include <stdint.h>
 #include <search.h>
 #include <stdbool.h>
@@ -573,9 +574,9 @@ static rule_map *rule_map_new(kvp keys[], size_t num_of_keys, int lineno) {
       				    memset(tmp, 0, l);
 
     			new_map->key = tmp;
-
-    			size_t key_len = (new_map->key) ? strlen(new_map->key) : 0;
-			key_len = (key_len + strlen(k->key) < INT_MAX) ? key_len + strlen(k->key) : INT_MAX;
+				
+			size_t key_len = (new_map->key) ? strlen(new_map->key) : 0;
+    			key_len = (key_len + strlen(k->key) < SIZE_MAX) ? key_len + strlen(k->key) : SIZE_MAX;
 			tmp = realloc(new_map->key, key_len + 1);
 			if (!tmp)
 			    goto oom;
