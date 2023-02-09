@@ -564,7 +564,7 @@ static rule_map *rule_map_new(kvp keys[], size_t num_of_keys, int lineno) {
     				char *tmp;
 				int l = 0;
     				int key_len_int = l - 0 - strlen(new_map->key);
-    				int val_len = l - 0 - strlen(new_map->key) - key_len;
+    				int val_len_int = l - 0 - strlen(new_map->key) - key_len;
     				l = l + key_len + val_len;
     				l += 1;
     				tmp = realloc(new_map->key, l);
@@ -576,6 +576,7 @@ static rule_map *rule_map_new(kvp keys[], size_t num_of_keys, int lineno) {
     			new_map->key = tmp;
 				
 			size_t key_len = (new_map->key) ? strlen(new_map->key) : 0;
+			size_t val_len = l - 0 - strlen(new_map->key) - key_len;
     			key_len = (key_len + strlen(k->key) < SIZE_MAX) ? key_len + strlen(k->key) : SIZE_MAX;
 			tmp = realloc(new_map->key, key_len + 1);
 			if (!tmp)
