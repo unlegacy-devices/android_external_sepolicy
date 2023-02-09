@@ -563,7 +563,7 @@ static rule_map *rule_map_new(kvp keys[], size_t num_of_keys, int lineno) {
 			if (r->dir == dir_in) {
     				char *tmp;
 				int l = 0;
-    				int key_len = l - 0 - strlen(new_map->key);
+    				int key_len_int = l - 0 - strlen(new_map->key);
     				int val_len = l - 0 - strlen(new_map->key) - key_len;
     				l = l + key_len + val_len;
     				l += 1;
